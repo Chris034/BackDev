@@ -1,13 +1,17 @@
-let players = require("public/dummyDatabase");
+let players = require("./public/dummyDatabase");
 
 
 // create an express app
 const express = require("express")
 const app = express()
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
 // use the express-static middleware
 app.use(express.static("public"))
-
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 // define the first route
 app.get("/", function (req, res) {
   res.send("<h1>Hello World!</h1>")
